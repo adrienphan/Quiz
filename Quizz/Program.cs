@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,18 +27,19 @@ namespace Quizz
 
         static void Main(string[] args)
         {
-            Answer(question1);
-            Answer(question2);
-            Answer(question3);
-            Answer(question4);
-            Answer(question5);
-            Answer(question6);
-            Answer(question7);
-            Answer(question8);
-            Answer(question9);
-            Answer(question10);
+            CreateQuestions();
+            //Answer(question1);
+            //Answer(question2);
+            //Answer(question3);
+            //Answer(question4);
+            //Answer(question5);
+            //Answer(question6);
+            //Answer(question7);
+            //Answer(question8);
+            //Answer(question9);
+            //Answer(question10);
 
-            DisplayScore();
+            //DisplayScore();
         }
 
         public static void Answer(Question question)
@@ -60,6 +62,18 @@ namespace Quizz
         public static void DisplayScore()
         {
             Console.WriteLine($"Votre score est de {score} points!");
+        }
+        public static void CreateQuestions()
+        {
+            string path = @"C:\Users\adrie\Documents\La Manu\Csharp basics\Quizz\Questions.txt";
+            string[] readText = File.ReadAllLines(path);
+            int questionIndex = 0;
+            Question[] questions = new Question[10];
+            foreach (string line in readText)
+            {
+                line.Split('?');
+                questionIndex++;
+            }
         }
     }
 }

@@ -1,0 +1,4 @@
+Quelle est la couleur du cheval blanc d'Henri IV ?,
+Bleu,
+Blanc,
+Vert
