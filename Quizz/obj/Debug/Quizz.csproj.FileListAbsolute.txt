@@ -1,0 +1,8 @@
+C:\Users\adrie\Documents\La Manu\Csharp basics\Quizz\Quizz\bin\Debug\Quizz.exe.config
+C:\Users\adrie\Documents\La Manu\Csharp basics\Quizz\Quizz\bin\Debug\Quizz.exe
+C:\Users\adrie\Documents\La Manu\Csharp basics\Quizz\Quizz\bin\Debug\Quizz.pdb
+C:\Users\adrie\Documents\La Manu\Csharp basics\Quizz\Quizz\obj\Debug\Quizz.csproj.AssemblyReference.cache
+C:\Users\adrie\Documents\La Manu\Csharp basics\Quizz\Quizz\obj\Debug\Quizz.csproj.SuggestedBindingRedirects.cache
+C:\Users\adrie\Documents\La Manu\Csharp basics\Quizz\Quizz\obj\Debug\Quizz.csproj.CoreCompileInputs.cache
+C:\Users\adrie\Documents\La Manu\Csharp basics\Quizz\Quizz\obj\Debug\Quizz.exe
+C:\Users\adrie\Documents\La Manu\Csharp basics\Quizz\Quizz\obj\Debug\Quizz.pdb
