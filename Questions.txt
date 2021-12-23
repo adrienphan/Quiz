@@ -1,4 +1,11 @@
-Quelle est la couleur du cheval blanc d'Henri IV ?,
-Bleu,
-Blanc,
-Vert
+Quelle est la couleur du cheval blanc d'Henri IV?#Bleu,Blanc,Vert#1
+Quel parchemin est le plus commun dans Nethack?#Soin Mineur,Identification,Lumière#1
+Quel film est introduit par le mot "Rosebud"?#Metropolis,La classe americaine,Citizen Kane#2
+Qui a composé la Marche Turque?#Wolfgang Amadeus Mozart,Ludwig Van Beethoven,Johann Sebastian Bach#0
+Dans le film d'animation "La Planète au Trésor", qui donne la carte à Jim Hawkins?#Long John Silver,Le vieux Billy Bones,Ben#1
+Qui gagne lors d'un combat entre Wolverine et Hulk?#Wolverine,Hulk,Loki#2
+Laquelle de ces expressions désigne une boucle?#do while,if else,new#0
+Quel personnage est mort plus de fois que Captain América dans les comics marvel?#Wolverine,Tante May,Professeur X#1
+Lequel de ces jeux a été créé par Richard Garfield ?#7 wonders,Magic l'assemblée,Duel Master#1
+Quelle est la syntaxe correcte pour écrire Hello World dans la console en Csharp ?#Console.WriteLine("Hello World");,print("Hello World");,echo "Hello World";#0
+Quelle est la réponse à la question de la vie, de l'univers, et de tout le reste ?#l'amour,la vérité,42#2

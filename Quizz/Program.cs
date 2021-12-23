@@ -10,41 +10,27 @@ namespace Quizz
     internal class Program
     {
         public static int score = 0;
-        public static Question question1 = new Question("Quel parchemin est le plus commun dans Nethack?", new string[] { "soin mineur", "identification", "lumière" }, 1);
-        public static Question question2 = new Question("Quel film est introduit par le mot \"Rosebud\"?", new string[] { "Metropolis", "La classe américaine", "Citizen Kane" }, 2);
-        public static Question question3 = new Question("Qui a composé la Marche Turque?", new string[] { "Wolfgang Amadeus Mozart", "Ludwig Van Beethoven", "Johann Sebastian Bach" }, 0);
-        public static Question question4 = new Question("Dans le film d'animation \"La Planète au Trésor\", qui donne la carte à Jim Hawkins?", new string[] { "Long John Silver", "Le vieux Billy Bones", "Ben" }, 1);
-        public static Question question5 = new Question("Qui gagne lors d'un combat entre Wolverine et Hulk?", new string[] { "Wolverine", "Hulk", "Loki" }, 2);
-        public static Question question6 = new Question("Laquelle de ces expressions désigne une boucle?", new string[] { "do while", "if else", "new" }, 0);
-        public static Question question7 = new Question("Quel personnage est mort plus de fois que Captain América dans les comics marvel?", new string[] { "Wolverine", "Tante May", "Professeur X" }, 1);
-        public static Question question8 = new Question("Lequel de ces jeux a été créé par Richard Garfield?", new string[] { "7 Wonders", "Magic l'assemblée", "Duel Master" }, 1);
-        public static Question question9 = new Question("Quelle est la syntaxe correcte pour écrire Hello World dans la console en C#?", new string[] { "Console.WriteLine(\"Hello World\");", "print(\"Hello World\");", "echo \"Hello World\";" }, 0);
-        public static Question question10 = new Question("Quelle est la réponse à la question de la vie, de l'univers, et de tout le reste ?", new string[] { "L'amour", "L'amitié", "42" }, 2);
+        public static string path = @"C:\Users\adrie\Documents\La Manu\Csharp basics\Quizz\Questions.txt";
+        //Console.WriteLine("debug 01");
 
-
-
-
-
+        /**
+         * Main
+         */
         static void Main(string[] args)
         {
-            CreateQuestions();
-            //Answer(question1);
-            //Answer(question2);
-            //Answer(question3);
-            //Answer(question4);
-            //Answer(question5);
-            //Answer(question6);
-            //Answer(question7);
-            //Answer(question8);
-            //Answer(question9);
-            //Answer(question10);
-
-            //DisplayScore();
+            Init();
         }
-
+        /**
+         * Answer
+         * arg: Objet Question
+         * Displays the submited Question and its answers, waits for answer, and checks answer
+         */
         public static void Answer(Question question)
         {
+            Console.Clear();
+            //Display Question and answers
             question.Ask();
+            //Check if answer is correct
             if (question.IsAnswerGood(Console.ReadLine()))
             {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -58,21 +44,131 @@ namespace Quizz
                 Console.WriteLine($"Mauvaise réponse! la bonne réponse était {question.GoodAnswer()}.");
                 Console.ForegroundColor= ConsoleColor.White;
             }
+            Console.ReadKey();
         }
+        /**
+         * DisplayScore
+         * Displays the score variable
+         */
         public static void DisplayScore()
         {
+            Console.Clear();
             Console.WriteLine($"Votre score est de {score} points!");
+            Console.ReadKey();
         }
+
+        /**
+         * CreateQuestions
+         * Pulls Questions from text file and calls Answer Method
+         */
         public static void CreateQuestions()
         {
-            string path = @"C:\Users\adrie\Documents\La Manu\Csharp basics\Quizz\Questions.txt";
+            //text file
+
             string[] readText = File.ReadAllLines(path);
-            int questionIndex = 0;
-            Question[] questions = new Question[10];
+            
             foreach (string line in readText)
             {
-                line.Split('?');
-                questionIndex++;
+                readText = line.Split('#');
+                Question question = new Question( readText[0], readText[1].Split(','), Convert.ToInt32(readText[2]) );
+                Answer(question);
+            }
+            DisplayScore();
+        }
+        /**
+         * NewQuestion
+         * asks for inputs to create a new Question
+         */
+        public static void NewQuestion()
+        {
+            string newQuestion;
+            string[] newAnswer = new string[3];
+            int newGoodAnswerIndex;
+            int newAnswerIndex = 0;
+            Console.WriteLine("Ajoutez une question");
+            newQuestion = Console.ReadLine();
+
+            foreach (string potentialAnswer in newAnswer)
+            {
+                Console.WriteLine("Ajoutez réponse " + (newAnswerIndex + 1));
+                newAnswer[newAnswerIndex] = Console.ReadLine();
+                newAnswerIndex++;
+            }
+            Console.WriteLine("Quel est le numero de la bonne réponse ?");
+            newGoodAnswerIndex = Convert.ToInt32(Console.ReadLine()) - 1;
+
+            AddQuestion(newQuestion, newAnswer, newGoodAnswerIndex);
+        }
+        /**
+         * AddQuestion
+         * Adds a new question and answers to the text file
+         */
+        public static void AddQuestion(string questionToAdd, string[] answersToAdd, int goodAnswerIndexToAdd)
+        {
+            //Create the file if it doesn't exist
+            string answers = "";
+            if (!File.Exists(path))
+            {
+                File.Create(path);
+            }
+            //Divides the answers for the text file
+            foreach(string answer in answersToAdd)
+            {
+                answers += answer + ",";
+            }
+            //Write the question, answers and index of the right answer
+            using (StreamWriter writer = File.AppendText(path))
+            {
+                writer.WriteLine(questionToAdd + "#" + answers + "#" + goodAnswerIndexToAdd);
+            }
+        }
+        public static void Init()
+        {
+            bool admin = false;
+            Console.WriteLine("Bienvenue ! Pour vous connecter en administrateur, entrez votre mot de passe, sinon pressez 'enter'.");
+            string adminRequest = Console.ReadLine();
+            if (adminRequest == "flagadischbluck")
+            {
+                admin = true;
+            } else CreateQuestions();
+            if (admin == true)
+            {
+                adminMenu:
+                Console.Clear();
+                Console.WriteLine("Que souhaitez vous faire ?");
+                Console.Write("1- Ajouter une question: [");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("add");
+                Console.ForegroundColor= ConsoleColor.Gray;
+                Console.Write("]\n");
+                Console.Write("2- Modifier une question: [");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("edit");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Write("]\n");
+                Console.Write("3- Supprimer une question: [");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("delete");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Write("]\n");
+
+                string adminAction = Console.ReadLine();
+                switch (adminAction)
+                {
+                    case "add":
+                        NewQuestion();
+                        break;
+                    case "edit":
+                        //methode editQuestion
+                        break;
+                    case "delete":
+                        //methode deleteQuestion
+                        break;
+                    default:
+                        Console.WriteLine("je n'ai pas compris, réessayez.");
+                        Console.ReadKey();
+                        goto adminMenu;
+                }
             }
         }
     }
