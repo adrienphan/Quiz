@@ -23,7 +23,6 @@ namespace Quizz
 
 
 
-
         static void Main(string[] args)
         {
             Answer(question1);
